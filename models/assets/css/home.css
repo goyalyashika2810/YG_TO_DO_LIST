@@ -1,0 +1,159 @@
+.body {
+    background-image: url("/image/background.jpg");
+    background-size: cover; 
+    color: #3d3d3d;
+    font-size: 0.65rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.title {
+    background-image: url('/image/background.jpg') ;
+    color: white;
+    padding: 0.1%;
+}
+
+.head {
+    font-family: 'Blinker', sans-serif;
+    text-align: center;
+}
+
+#content {
+    background-color: white;
+    box-shadow: 0px 3px 15px 3px black;
+    padding: 0px;
+}
+
+#due-date {
+    position: relative;
+    top: -2px;
+    border: none;
+    color: grey;
+    font-weight: bolder;
+    width: 100%;
+}
+
+.category {
+    display: inline-block;
+    vertical-align: top;
+    padding: 2%;
+    padding-right: 0%;
+    border-right: 1px solid lightgrey; 
+    width: 50%;
+}
+
+.due-date {
+    position: absolute;
+    padding: 2%;
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+}
+
+select {
+    border: none;
+    color: grey;
+    width: 100%;
+    font-weight: bolder;
+}
+
+.todo-description {
+    padding: 2%;
+    border-bottom: 1px solid lightgrey;
+    border-left: none;
+    border-right: none;
+}
+
+#description {
+    border: none;
+    font-weight: bold;
+    width: 100%;
+}
+
+::placeholder { 
+    color: darkgrey;
+}
+
+.form-button {
+    position: relative;
+    border-top: 1px solid lightgrey;
+    z-index: 100;
+    padding: 2%;
+    padding-bottom: 0%;
+    background: white;
+}
+
+.form-button i {
+    padding-right: 2px;
+}
+
+.form-button button {
+    width: 95px;
+    border: none;
+    color: white;
+    height: 35px;
+    font-size: 0.7rem;
+    border-radius: 3px;
+}
+
+.add-task {
+    position: absolute;
+    right: 51%;
+    background-color: #5e666d;
+}
+
+.delete-task {
+    position: relative;
+    left: 51%;
+    background-color: #ff4102;
+}
+
+.entry {
+    width: 100%;
+    border-top: 1px solid lightgrey;
+    padding: 2%;
+}
+
+.date {
+    font-size: 0.5rem;
+    color: darkgrey;
+}
+
+.cat-des {
+    width: 75%;
+    word-wrap: break-word;
+}
+
+.details {
+    display: inline-block;
+    position: relative;
+    width: 94%;
+    left: 5px;
+    /* text-decoration: line-through;
+    text-decoration-color: grey; */
+    font-size: 0.7rem;
+}
+
+.entry-category {
+    position: absolute;
+    top: 0px;
+    height: 25px;
+    width: 70px;
+    color: white;
+    border-radius: 2px;
+    right: 20px;
+    text-align: center;
+    padding: 4px;
+}
+
+.entry-category div {
+    position: relative;
+    top: 4px;
+    margin: auto;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+}
+
