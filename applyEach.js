@@ -1,51 +1,38 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+exports.default = applyEach;
 
-var _applyEach = require('./internal/applyEach');
+var _slice = require('./slice');
 
-var _applyEach2 = _interopRequireDefault(_applyEach);
+var _slice2 = _interopRequireDefault(_slice);
 
-var _map = require('./map');
+var _initialParams = require('./initialParams');
 
-var _map2 = _interopRequireDefault(_map);
+var _initialParams2 = _interopRequireDefault(_initialParams);
+
+var _wrapAsync = require('./wrapAsync');
+
+var _wrapAsync2 = _interopRequireDefault(_wrapAsync);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Applies the provided arguments to each function in the array, calling
- * `callback` after all functions have completed. If you only provide the first
- * argument, `fns`, then it will return a function which lets you pass in the
- * arguments as if it were a single function call. If more arguments are
- * provided, `callback` is required while `args` is still optional.
- *
- * @name applyEach
- * @static
- * @memberOf module:ControlFlow
- * @method
- * @category Control Flow
- * @param {Array|Iterable|Object} fns - A collection of {@link AsyncFunction}s
- * to all call with the same arguments
- * @param {...*} [args] - any number of separate arguments to pass to the
- * function.
- * @param {Function} [callback] - the final argument should be the callback,
- * called when all functions have completed processing.
- * @returns {Function} - If only the first argument, `fns`, is provided, it will
- * return a function which lets you pass in the arguments as if it were a single
- * function call. The signature is `(..args, callback)`. If invoked with any
- * arguments, `callback` is required.
- * @example
- *
- * async.applyEach([enableSearch, updateSchema], 'bucket', callback);
- *
- * // partial application example:
- * async.each(
- *     buckets,
- *     async.applyEach([enableSearch, updateSchema]),
- *     callback
- * );
- */
-exports.default = (0, _applyEach2.default)(_map2.default);
+function applyEach(eachfn) {
+    return function (fns /*, ...args*/) {
+        var args = (0, _slice2.default)(arguments, 1);
+        var go = (0, _initialParams2.default)(function (args, callback) {
+            var that = this;
+            return eachfn(fns, function (fn, cb) {
+                (0, _wrapAsync2.default)(fn).apply(that, args.concat(cb));
+            }, callback);
+        });
+        if (args.length) {
+            return go.apply(this, args);
+        } else {
+            return go;
+        }
+    };
+}
 module.exports = exports['default'];
