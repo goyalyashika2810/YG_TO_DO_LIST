@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <meta name="author" content="Deep Singh">
+        <meta name="description" content="To-Do Web Application">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/css/home.css">
+        <link rel="shortcut icon" type="image/png" href="/image/icon/list.png">
+        <link href="https://fonts.googleapis.com/css?family=Blinker|Quicksand&display=swap" rel="stylesheet">
+        <!-- font-family: 'Blinker', sans-serif; -->
+        <!-- font-family: 'Quicksand', sans-serif; -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <title>To-Do List</title>
+    </head>
+    <body class="body">
+        <div class="container">
+            <div class="row">
+                    <div class="col"></div>
+
+
+                    <div class="col-6" id="content">
+                        <div class="title">
+                                <h3 class="head">TODO App</h3>
+                        </div>
+                        
+                        <form action="/todo_create" method="POST">
+                            <div class="todo-description">
+                                <label for="description"><b>DESCRIPTION</b></label><br>
+                                <input type="text" name="description" id="description" placeholder="What do you need to do?" required>
+                            </div>
+                            <div class="cat-date">
+                                <div class="category">
+                                    <label for="category"><b>CATEGORY</b></label><br>
+                                    <select name="category" id="category" required>
+                                        <option value="" selected>Choose a catagory</option>
+                                        <option value="College">College</option>
+                                        <option value="Work">Work</option>
+                                        <option value="Cleaning">Cleaning</option>
+                                        <option value="Personal">Personal</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="due-date">
+                                    <label for="due-date"><b>DUE DATE</b></label><br>
+                                    <input type="date" name="dueDate" id="due-date" required>
+                                </div>
+                            </div>
+                            <div class="form-button">
+                                <button class="add-task" type="submit"><i class="fas fa-plus"></i>ADD TASK</button>
+                                </form>
+                                <form action="/todo_delete" method="POST">
+                                <button class="delete-task" type="submit"><i class="far fa-trash-alt"></i>DELETE TASK</button>
+                            </div>
+                        <% for(let i of todo_data){ %>
+                            <div class="entry">
+                                <input type="checkbox" class="checkbox" name="_id" value="<%= i._id %>" onclick="myFunction()">
+                                <span class="details">
+                                    <div class="cat-des">
+                                        <b><%= i.description %></b> <br>
+                                        <span class="date"><i class="far fa-calendar-alt"></i>&ensp;<b><%= i.dueDate %></b></span>
+                                    </div>
+                                    <% if(i.category =="College"){ %>
+                                    <div class="entry-category" style="background-color: #ff7200;">            
+                                        <%= i.category %>
+                                    </div>
+                                    <% } %>
+                                    <% if(i.category =="Work"){ %>
+                                        <div class="entry-category" style="background-color: purple;">            
+                                            <%= i.category %>
+                                        </div>
+                                    <% } %>
+                                    <% if(i.category =="Cleaning"){ %>
+                                        <div class="entry-category" style="background-color: #edcc28;">            
+                                            <%= i.category %>
+                                        </div>
+                                    <% } %>
+                                    <% if(i.category =="Personal"){ %>
+                                        <div class="entry-category" style="background-color: green;">            
+                                            <%= i.category %>
+                                        </div>
+                                    <% } %>
+                                    <% if(i.category =="Other"){ %>
+                                        <div class="entry-category" style="background-color: #0083ff;">            
+                                            <%= i.category %>
+                                        </div>
+                                    <% } %>
+                                </span> 
+                            </div>    
+                        <% } %>
+                    </div>
+                </form>
+                <div class="col"></div>
+            </div>
+        </div>
+        <script src="/js/home.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
